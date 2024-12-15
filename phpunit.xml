@@ -17,7 +17,11 @@
             <directory suffix=".php">upload/system</directory>
         </include>
         <exclude>
-            <directory>upload/system/storage/vendor</directory>
+            <directory>vendor</directory>
+            <directory>upload/system/storage/cache</directory>
         </exclude>
     </coverage>
+    <php>
+        <env name="APP_ENV" value="testing"/>
+    </php>
 </phpunit>

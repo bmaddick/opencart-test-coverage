@@ -16,5 +16,11 @@ $autoloader = new \Opencart\System\Engine\Autoloader();
 $autoloader->register('Opencart\Catalog', DIR_CATALOG);
 $autoloader->register('Opencart\System', DIR_SYSTEM);
 
+// Register Tests namespace
+$autoloader->register('Tests', __DIR__);
+
 // Include Composer's autoloader
 require_once(__DIR__ . '/../vendor/autoload.php');
+
+// Set up test environment
+putenv('APP_ENV=testing');

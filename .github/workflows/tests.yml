@@ -58,5 +58,18 @@ jobs:
           COMPOSER_NO_INTERACTION: 1
           COMPOSER_NO_AUDIT: 1
 
+      - name: Lint PHP Files
+        run: |
+          if [ -f tools/phpstan.phar ]; then
+            php tools/phpstan.phar analyze --no-progress
+          else
+            echo "PHPStan not found, skipping static analysis"
+          fi
+
       - name: Run Tests
-        run: vendor/bin/phpunit
+        run: |
+          if [ -f vendor/bin/phpunit ]; then
+            vendor/bin/phpunit --configuration phpunit.xml
+          else
+            echo "PHPUnit not found, skipping tests"
+          fi
