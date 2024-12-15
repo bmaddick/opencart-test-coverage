@@ -60,11 +60,9 @@ jobs:
 
       - name: Lint PHP Files
         run: |
-          if [ -f tools/phpstan.phar ]; then
-            php tools/phpstan.phar analyze --no-progress
-          else
-            echo "PHPStan not found, skipping static analysis"
-          fi
+          vendor/bin/phpstan analyze --no-progress
+        env:
+          COMPOSER_PROCESS_TIMEOUT: 600
 
       - name: Run Tests
         run: |
