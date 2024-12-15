@@ -26,9 +26,9 @@
   },
   "require": {
     "php": ">=7.4",
-    "scssphp/scssphp": "^1.10.0",
-    "twig/twig": "~3.3.0",
-    "aws/aws-sdk-php": "^3.306"
+    "scssphp/scssphp": "1.10.0",
+    "twig/twig": "3.3.10",
+    "aws/aws-sdk-php": "3.306.0"
   },
   "autoload-dev": {
       "psr-4": {
