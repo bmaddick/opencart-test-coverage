@@ -1,8 +1,6 @@
 name: tests
 
 on:
-  push:
-    branches: [ master ]
   pull_request:
     branches: [ master ]
 
@@ -10,9 +8,9 @@ jobs:
   tests:
     runs-on: ubuntu-latest
     strategy:
-      fail-fast: false
       matrix:
         php: ['7.4', '8.0', '8.1', '8.2', '8.3']
+      fail-fast: false
 
     name: tests (${{ matrix.php }})
 
@@ -24,21 +22,41 @@ jobs:
         uses: shivammathur/setup-php@v2
         with:
           php-version: ${{ matrix.php }}
+          tools: composer:v2, cs2pr
           extensions: mbstring, xml, ctype, curl, zip
           coverage: none
+          ini-file: production
+        env:
+          COMPOSER_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        continue-on-error: true
+        id: setup_php
+
+      - name: Retry PHP Setup
+        if: steps.setup_php.outcome == 'failure'
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: ${{ matrix.php }}
+          tools: composer:v2, cs2pr
+          extensions: mbstring, xml, ctype, curl, zip
+          coverage: none
+          ini-file: production
+        env:
+          COMPOSER_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Cache dependencies
-        uses: actions/cache@v4
+        uses: actions/cache@v3
         with:
           path: vendor
-          key: php-${{ matrix.php }}-composer-${{ hashFiles('**/composer.json') }}
-          restore-keys: |
-            php-${{ matrix.php }}-composer-
+          key: php-${{ matrix.php }}-composer-${{ hashFiles('composer.json') }}
 
       - name: Install Dependencies
         run: |
           composer config --global github-protocols https
           composer install --prefer-dist --no-interaction --no-progress
+        env:
+          COMPOSER_PROCESS_TIMEOUT: 600
+          COMPOSER_NO_INTERACTION: 1
+          COMPOSER_NO_AUDIT: 1
 
       - name: Run Tests
         run: vendor/bin/phpunit

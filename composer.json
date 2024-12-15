@@ -27,7 +27,10 @@
     "vendor-dir": "vendor",
     "allow-plugins": {
       "composer/package-versions-deprecated": true
-    }
+    },
+    "process-timeout": 600,
+    "optimize-autoloader": true,
+    "sort-packages": true
   },
   "require": {
     "php": ">=7.4",
