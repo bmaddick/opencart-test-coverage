@@ -8,8 +8,7 @@ parameters:
     paths:
         - ./upload/
     excludePaths:
-        - ./system/storage/vendor/
-        - ./upload/system/storage/vendor/
+        - ./vendor/
         - ./upload/system/storage/cache/
     tmpDir: .cache
     ignoreErrors:
@@ -23,3 +22,5 @@ parameters:
         - '#^Parameter \#2 \$value of method Opencart\\Admin\\Model\\Design\\SeoUrl::\S+\(\) expects string, int given\.$#'
         - '#^Parameter \#\d+ \$\S+ of function \S+ expects .*(int|float|string).*, .*(int|float|string).* given\.$#'
         - '#^Variable \$\S+ might not be defined\.$#'
+    bootstrapFiles:
+        - tools/phpstan/bootstrap.php
