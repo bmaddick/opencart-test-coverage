@@ -22,7 +22,9 @@
     "vendor-dir": "upload/system/storage/vendor/",
     "platform": {
       "php": "7.4.33"
-    }
+    },
+    "preferred-install": "dist",
+    "github-protocols": ["https"]
   },
   "require": {
     "php": ">=7.4",

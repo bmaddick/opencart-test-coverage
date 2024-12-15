@@ -44,3 +44,5 @@
 /.DS_Store
 /.cache
 /.php-cs-fixer.cache
+/composer.lock
+/upload/system/storage/vendor/
