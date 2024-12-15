@@ -46,3 +46,5 @@
 /.php-cs-fixer.cache
 /composer.lock
 /upload/system/storage/vendor/
+/vendor/
+/.phpunit.result.cache
