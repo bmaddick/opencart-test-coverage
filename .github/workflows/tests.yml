@@ -30,9 +30,7 @@ jobs:
       - name: Cache dependencies
         uses: actions/cache@v4
         with:
-          path: |
-            ./upload/system/storage/vendor
-            ~/.composer/cache
+          path: vendor
           key: php-${{ matrix.php }}-composer-${{ hashFiles('**/composer.json') }}
           restore-keys: |
             php-${{ matrix.php }}-composer-
@@ -41,10 +39,6 @@ jobs:
         run: |
           composer config --global github-protocols https
           composer install --prefer-dist --no-interaction --no-progress
-          mkdir -p upload/system/storage/vendor
-          cp -r vendor/* upload/system/storage/vendor/
-          cp vendor/autoload.php upload/system/storage/vendor/
-          rm -rf vendor
 
       - name: Run Tests
-        run: php upload/system/storage/vendor/bin/phpunit
+        run: vendor/bin/phpunit

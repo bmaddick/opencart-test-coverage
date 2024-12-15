@@ -24,6 +24,7 @@
     },
     "preferred-install": "dist",
     "github-protocols": ["https"],
+    "vendor-dir": "vendor",
     "allow-plugins": {
       "composer/package-versions-deprecated": true
     }
