@@ -40,7 +40,7 @@ jobs:
       - name: Install Dependencies
         run: |
           composer config --global github-protocols https
-          composer install --prefer-dist --no-interaction --no-progress --no-plugins
+          composer install --prefer-source --no-interaction --no-progress
 
       - name: Run Tests
         run: vendor/bin/phpunit
