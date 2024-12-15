@@ -40,7 +40,11 @@ jobs:
       - name: Install Dependencies
         run: |
           composer config --global github-protocols https
-          composer install --prefer-source --no-interaction --no-progress
+          composer install --prefer-dist --no-interaction --no-progress
+          mkdir -p upload/system/storage/vendor
+          cp -r vendor/* upload/system/storage/vendor/
+          cp vendor/autoload.php upload/system/storage/vendor/
+          rm -rf vendor
 
       - name: Run Tests
-        run: vendor/bin/phpunit
+        run: php upload/system/storage/vendor/bin/phpunit

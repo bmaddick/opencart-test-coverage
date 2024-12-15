@@ -1,22 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <phpunit xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:noNamespaceSchemaLocation="https://schema.phpunit.de/9.5/phpunit.xsd"
-         bootstrap="vendor/autoload.php"
+         bootstrap="upload/system/storage/vendor/autoload.php"
          colors="true"
+         verbose="true"
          stopOnFailure="false">
     <testsuites>
         <testsuite name="OpenCart Test Suite">
             <directory>./tests/</directory>
         </testsuite>
     </testsuites>
-    <filter>
-        <whitelist>
+    <coverage>
+        <include>
             <directory suffix=".php">upload/catalog</directory>
             <directory suffix=".php">upload/admin</directory>
             <directory suffix=".php">upload/system</directory>
-            <exclude>
-                <directory>upload/system/storage/vendor</directory>
-            </exclude>
-        </whitelist>
-    </filter>
+        </include>
+        <exclude>
+            <directory>upload/system/storage/vendor</directory>
+        </exclude>
+    </coverage>
 </phpunit>
