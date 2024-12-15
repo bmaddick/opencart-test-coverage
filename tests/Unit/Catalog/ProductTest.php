@@ -11,7 +11,7 @@ class ProductTest extends TestCase
      *
      * @return void
      */
-    public function test_product_class_exists(): void
+    public function testProductClassExists()
     {
         $this->assertTrue(
             class_exists('Opencart\Catalog\Model\Catalog\Product'),
